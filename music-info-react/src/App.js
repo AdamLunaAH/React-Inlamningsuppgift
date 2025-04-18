@@ -1,24 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+// Imports npm bootstrap CSS for usage on the website
+import "bootstrap/dist/css/bootstrap.min.css";
+// Custom CSS for the website
+import "./music-info/css/custom.css";
+
+
+import { Main } from './app/main';
+import { ThemeUtil } from './utils/themeContext';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+<>
+    <ThemeUtil>
+    <Main />
+    </ThemeUtil>
+</>
   );
 }
 
