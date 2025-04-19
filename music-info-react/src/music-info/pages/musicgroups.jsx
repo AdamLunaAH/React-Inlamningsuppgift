@@ -1,60 +1,81 @@
 import React, { useState, useEffect } from "react";
-import musicService from "../../services/music-group-services";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-
+import { useSearchParams } from "react-router";
+import { Link } from "react-router";
+// Import the service class
+import musicService from "../../services/music-group-services";
 export default function MusicGroups() {
-    const _service = new musicService(
+    //Initialize the service, uses memo to avoid re-initializing the service on every render
+    const _service = React.useMemo(() => new musicService(
         `https://seido-webservice-307d89e1f16a.azurewebsites.net/api`
-    );
+    ), []);
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    // Read values from the URL
+    const initialSearch = searchParams.get("search") || "";
+    const initialPage = parseInt(searchParams.get("page") || "0", 10);
 
     const [musicGroups, setMusicGroups] = useState([]);
-    const [searchInput, setSearchInput] = useState("");
-    const [currentPageNr, setCurrentPageNr] = useState(0);
+    const [searchInput, setSearchInput] = useState(initialSearch);
+
+    // Only used when search is triggered (used to stop the switch page buttons to use the search value)
+    const [activeSearch, setActiveSearch] = useState(initialSearch);
+    const [currentPageNr, setCurrentPageNr] = useState(initialPage);
     const [pageCount, setPageCount] = useState(1);
     const [dbItemsCount, setDbItemsCount] = useState(0);
 
-    useEffect(() => {
-        fetchData();
-    }, [currentPageNr, searchInput]);
-
+    // Checks if the search input is null or whitespace and returns true or false
     const isNullOrWhiteSpace = (str) => str == null || str.trim().length === 0;
 
-    const fetchData = async () => {
-        let result;
-        if (isNullOrWhiteSpace(searchInput)) {
-            result = await _service.readMusicGroupsAsync(currentPageNr, true);
-        } else {
-            result = await _service.readMusicGroupsAsync(
-                currentPageNr,
-                true,
-                searchInput
-            );
-        }
+    // Gets the music groups data from the service, uses useCallback to avoid re-initializing the function on every render
+    const fetchData = React.useCallback(async (page, search) => {
+        const result = isNullOrWhiteSpace(search)
+            ? await _service.readMusicGroupsAsync(page, true)
+            : await _service.readMusicGroupsAsync(page, true, search);
 
         setMusicGroups(result.pageItems);
         setPageCount(result.pageCount);
         setDbItemsCount(result.dbItemsCount);
-    };
+    }, [_service]);
 
+    // Fetch data when page number or search term changes
+    useEffect(() => {
+        fetchData(currentPageNr, activeSearch);
+    }, [currentPageNr, activeSearch, fetchData]);
+
+    // Handles the search
     const handleSearch = () => {
+        // Apply search filter
+        setActiveSearch(searchInput);
+        // Switch to the first page
         setCurrentPageNr(0);
-        fetchData();
+        setSearchParams({ search: searchInput, page: "0" });
     };
 
+    // Handles the clear search
     const handleClear = () => {
         setSearchInput("");
+        setActiveSearch("");
         setCurrentPageNr(0);
+        // Clear URL params
+        setSearchParams({});
     };
 
+    // Handles the previous page function
     const handlePrev = () => {
         if (currentPageNr > 0) {
-            setCurrentPageNr(currentPageNr - 1);
+            const newPage = currentPageNr - 1;
+            setCurrentPageNr(newPage);
+            setSearchParams({ search: activeSearch, page: newPage.toString() });
         }
     };
 
+    // Handles the next page function
     const handleNext = () => {
         if (currentPageNr < pageCount - 1) {
-            setCurrentPageNr(currentPageNr + 1);
+            const newPage = currentPageNr + 1;
+            setCurrentPageNr(newPage);
+            setSearchParams({ search: activeSearch, page: newPage.toString() });
         }
     };
 
@@ -62,7 +83,7 @@ export default function MusicGroups() {
         <main>
             <Container className="container-sm">
                 <h1 className="pb-2 border-bottom">List of music groups</h1>
-
+                {/* Search form with clear search */}
                 <Form className="mb-3">
                     <Form.Label htmlFor="search-input">
                         Search for music groups
@@ -124,14 +145,14 @@ export default function MusicGroups() {
                                         {item.establishedYear}
                                     </Col>
                                     <Col>
-                                        <a
-                                            href={`groupinfo.html?id=${item.musicGroupId}`}
+                                        <Link
+                                            to={`/groupinfo/${item.musicGroupId}`}
                                             className="btn btn-primary btn-sm btn-block"
                                             role="button"
                                             aria-pressed="true"
                                         >
                                             Go to group info
-                                        </a>
+                                        </Link>
                                     </Col>
                                 </Row>
                             );

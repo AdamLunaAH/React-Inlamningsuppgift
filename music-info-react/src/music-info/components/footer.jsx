@@ -1,6 +1,8 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import ColorMode from "./colorMode";
+// Theme toggle button
+import ColorMode from "./colormode";
+// Handles errors gracefully
 import { ErrorBoundary } from "react-error-boundary";
 
 export default function Footer() {
@@ -15,6 +17,7 @@ export default function Footer() {
                 </footer>
             </Container>
 
+            {/* Theme switcher wrapped in error boundary */}
             <ErrorBoundary fallback={<div>Something went wrong</div>}>
                 <ColorMode />
             </ErrorBoundary>
