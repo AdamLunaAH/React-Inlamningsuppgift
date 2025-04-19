@@ -22,8 +22,8 @@ export default function ColorMode() {
         <Dropdown className="position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
             <Dropdown.Toggle
                 id="bd-theme"
-                variant={theme === "light" ? "light" : "dark"}
-                className={`btn-bd-primary py-2 d-flex align-items-center`}
+                variant="primary"
+                className="btn-bd-primary py-2 d-flex align-items-center"
                 aria-label={`Toggle theme (${theme})`}
             >
                 <span className="theme-icon-active me-2">{iconMap[theme]}</span>
@@ -37,23 +37,26 @@ export default function ColorMode() {
                 aria-labelledby="bd-theme-text"
             >
                 {["light", "dark", "auto"].map((value) => (
-                    <Dropdown.Item
+                    <button
                         key={value}
-                        onClick={() => setTheme(value)}
-                        active={theme === value}
+                        type="button"
+                        className={`dropdown-item d-flex align-items-center ${
+                            theme === value ? "active" : ""
+                        }`}
+                        data-bs-theme-value={value}
                         aria-pressed={theme === value}
-                        className="d-flex align-items-center"
+                        onClick={() => setTheme(value)}
                     >
                         {iconMap[value]}
                         {value.charAt(0).toUpperCase() + value.slice(1)}
-                        {theme === value && (
-                            <CheckIcon
-                                className="bi my-1"
-                                width="1em"
-                                height="1em"
-                            />
-                        )}
-                    </Dropdown.Item>
+                        <CheckIcon
+                            className={`bi ms-auto ${
+                                theme === value ? "" : "d-none"
+                            }`}
+                            width="1em"
+                            height="1em"
+                        />
+                    </button>
                 ))}
             </Dropdown.Menu>
         </Dropdown>
