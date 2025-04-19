@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import { ThemeContext } from "../../utils/themeContext1";
+import { ThemeContext } from "../../utils/themeContext";
 
 // Icons for the theme switcher
 import { ReactComponent as SunIcon } from "../assets/icons/sun-fill.svg";
