@@ -1,9 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router";
-import Home from "../pages/home";
-import MusicGroups from "../pages/musicgroups";
-import GroupInfo from "../pages/groupinfo";
-import Error from "../pages/error";
+import Home from "../pages/Home";
+import MusicGroups from "../pages/MusicGroups";
+import GroupInfo from "../pages/GroupInfo";
+import Error from "../pages/Error";
 
 // Main router for the app
 export default function AppRouter() {

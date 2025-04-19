@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 // Theme toggle button
-import ColorMode from "./colormode";
+import ColorMode from "./ColorMode";
 // Handles errors gracefully
 import { ErrorBoundary } from "react-error-boundary";
 

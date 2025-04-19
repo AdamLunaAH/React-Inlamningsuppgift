@@ -3,12 +3,16 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useSearchParams } from "react-router";
 import { Link } from "react-router";
 // Import the service class
-import musicService from "../../services/music-group-services";
+import musicService from "../../services/musicGroupServices";
 export default function MusicGroups() {
     //Initialize the service, uses memo to avoid re-initializing the service on every render
-    const _service = React.useMemo(() => new musicService(
-        `https://seido-webservice-307d89e1f16a.azurewebsites.net/api`
-    ), []);
+    const _service = React.useMemo(
+        () =>
+            new musicService(
+                `https://seido-webservice-307d89e1f16a.azurewebsites.net/api`
+            ),
+        []
+    );
     const [searchParams, setSearchParams] = useSearchParams();
 
     // Read values from the URL
@@ -28,15 +32,18 @@ export default function MusicGroups() {
     const isNullOrWhiteSpace = (str) => str == null || str.trim().length === 0;
 
     // Gets the music groups data from the service, uses useCallback to avoid re-initializing the function on every render
-    const fetchData = React.useCallback(async (page, search) => {
-        const result = isNullOrWhiteSpace(search)
-            ? await _service.readMusicGroupsAsync(page, true)
-            : await _service.readMusicGroupsAsync(page, true, search);
+    const fetchData = React.useCallback(
+        async (page, search) => {
+            const result = isNullOrWhiteSpace(search)
+                ? await _service.readMusicGroupsAsync(page, true)
+                : await _service.readMusicGroupsAsync(page, true, search);
 
-        setMusicGroups(result.pageItems);
-        setPageCount(result.pageCount);
-        setDbItemsCount(result.dbItemsCount);
-    }, [_service]);
+            setMusicGroups(result.pageItems);
+            setPageCount(result.pageCount);
+            setDbItemsCount(result.dbItemsCount);
+        },
+        [_service]
+    );
 
     // Fetch data when page number or search term changes
     useEffect(() => {

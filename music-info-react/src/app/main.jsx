@@ -1,6 +1,6 @@
-import Header from "../music-info/components/header";
-import Footer from "../music-info/components/footer";
-import AppRouter from "../music-info/routes/approuter";
+import Header from "../music-info/components/Header";
+import Footer from "../music-info/components/Footer";
+import AppRouter from "../music-info/routes/AppRouter";
 
 export function Main() {
     return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 // Import the service class
-import musicService from "../../services/music-group-services";
+import musicService from "../../services/musicGroupServices";
 
 export default function Home() {
     const [dbInfo, setDbInfo] = useState(null);

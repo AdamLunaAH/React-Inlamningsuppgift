@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Container, Row, Col } from "react-bootstrap";
-import musicService from "../../services/music-group-services";
+import musicService from "../../services/musicGroupServices";
 
 export default function GroupInfo() {
     // Get group ID from URL parameters
