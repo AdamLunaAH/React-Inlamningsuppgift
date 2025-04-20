@@ -3,6 +3,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { ThemeContext } from "../../utils/themeContext";
 import { NavLink, Link } from "react-router";
 
+// Navigation menu with links to different pages using router
 export default function NavMenu() {
     // Get current theme
     const { theme } = useContext(ThemeContext);

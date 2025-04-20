@@ -1,3 +1,4 @@
+// Single music group info page
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Container, Row, Col } from "react-bootstrap";
@@ -24,6 +25,16 @@ export default function GroupInfo() {
         };
         fetchData();
     }, [id, _service]);
+
+
+    // Page title with group name
+    useEffect(() => {
+        if (groupData?.name) {
+            document.title = `${groupData.name} - Group Info`;
+        }
+    }, [groupData]);
+
+
 
     if (!groupData) return <p>Loading...</p>;
 

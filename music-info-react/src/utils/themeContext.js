@@ -1,3 +1,4 @@
+// Used to change the theme of the app, store it in localStorage and get the system preference
 import React, { createContext, useEffect, useState } from "react";
 
 // Create a context to hold theme and updater

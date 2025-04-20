@@ -2,6 +2,7 @@ import Header from "../music-info/components/Header";
 import Footer from "../music-info/components/Footer";
 import AppRouter from "../music-info/routes/AppRouter";
 
+// Main component
 export function Main() {
     return (
         <>

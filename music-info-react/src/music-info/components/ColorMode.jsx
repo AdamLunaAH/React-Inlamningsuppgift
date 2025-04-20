@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { ThemeContext } from "../../utils/themeContext";
 
+// Theme switcher component that allows users to switch between light, dark, and auto themes
 // Icons for the theme switcher
 import { ReactComponent as SunIcon } from "../assets/icons/sun-fill.svg";
 import { ReactComponent as MoonIcon } from "../assets/icons/moon-stars-fill.svg";

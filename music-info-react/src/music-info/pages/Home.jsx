@@ -1,3 +1,4 @@
+// Home/start page
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 // Import the service class
@@ -18,6 +19,11 @@ export default function Home() {
         };
         // Call the fetch function
         fetchData();
+    }, []);
+
+    // Page title
+    useEffect(() => {
+        document.title = "Music info";
     }, []);
 
     return (

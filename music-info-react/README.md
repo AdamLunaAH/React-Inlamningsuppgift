@@ -38,6 +38,8 @@ music-info-react/
 
 ## Installation
 
+Note: npm needs to run in the "music-info-react"-folder
+
 1. Clone the repository:
    ```bash
    git clone <repository-url>

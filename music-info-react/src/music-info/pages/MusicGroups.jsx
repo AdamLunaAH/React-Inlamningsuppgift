@@ -1,3 +1,4 @@
+// Music groups page with search function and pagination
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useSearchParams } from "react-router";
@@ -85,6 +86,11 @@ export default function MusicGroups() {
             setSearchParams({ search: activeSearch, page: newPage.toString() });
         }
     };
+
+    // Page title
+    useEffect(() => {
+        document.title = "Music Groups";
+    }, []);
 
     return (
         <main>
