@@ -1,6 +1,10 @@
 // Home/start page
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+
+// Import icons from react-bootstrap-icons
+import { BoomboxFill, VinylFill, PersonFill } from "react-bootstrap-icons";
+
 // Import the service class
 import musicService from "../../services/musicGroupServices";
 
@@ -50,13 +54,10 @@ export default function Home() {
                                 className="g-4 py-5"
                             >
                                 <Col className="d-flex align-items-start">
-                                    <svg
-                                        className="bi text-body-secondary flex-shrink-0 me-3"
-                                        width="1.75em"
-                                        height="1.75em"
-                                    >
-                                        <use href="/img/icons.svg#boombox" />
-                                    </svg>
+                                    <BoomboxFill
+                                        size={28}
+                                        className="text-body-secondary flex-shrink-0 me-3"
+                                    />
                                     <div>
                                         <h3 className="fw-bold mb-0 fs-4 text-body-emphasis">
                                             Music groups
@@ -70,13 +71,10 @@ export default function Home() {
                                 </Col>
 
                                 <Col className="d-flex align-items-start">
-                                    <svg
-                                        className="bi text-body-secondary flex-shrink-0 me-3"
-                                        width="1.75em"
-                                        height="1.75em"
-                                    >
-                                        <use href="/img/icons.svg#album" />
-                                    </svg>
+                                    <VinylFill
+                                        size={28}
+                                        className="text-body-secondary flex-shrink-0 me-3"
+                                    />
                                     <div>
                                         <h3 className="fw-bold mb-0 fs-4 text-body-emphasis">
                                             Albums
@@ -90,13 +88,10 @@ export default function Home() {
                                 </Col>
 
                                 <Col className="d-flex align-items-start">
-                                    <svg
-                                        className="bi text-body-secondary flex-shrink-0 me-3"
-                                        width="1.75em"
-                                        height="1.75em"
-                                    >
-                                        <use href="/img/icons.svg#artist" />
-                                    </svg>
+                                    <PersonFill
+                                        size={28}
+                                        className="text-body-secondary flex-shrink-0 me-3"
+                                    />
                                     <div>
                                         <h3 className="fw-bold mb-0 fs-4 text-body-emphasis">
                                             Artists

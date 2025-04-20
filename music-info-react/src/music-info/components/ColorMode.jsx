@@ -2,21 +2,17 @@ import React, { useContext } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { ThemeContext } from "../../utils/themeContext";
 
-// Theme switcher component that allows users to switch between light, dark, and auto themes
-// Icons for the theme switcher
-import { ReactComponent as SunIcon } from "../assets/icons/sun-fill.svg";
-import { ReactComponent as MoonIcon } from "../assets/icons/moon-stars-fill.svg";
-import { ReactComponent as AutoIcon } from "../assets/icons/circle-half.svg";
-import { ReactComponent as CheckIcon } from "../assets/icons/check2.svg";
+
+// Imports the icons from react-bootstrap-icons
+import { SunFill, MoonStarsFill, CircleHalf, Check2 } from "react-bootstrap-icons";
 
 export default function ColorMode() {
     const { theme, setTheme } = useContext(ThemeContext);
 
     const iconMap = {
-        light: <SunIcon className="me-2" width="1em" height="1em" />,
-        dark: <MoonIcon className="me-2" width="1em" height="1em" />,
-        auto: <AutoIcon className="me-2" width="1em" height="1em" />,
-
+        light: <SunFill className="me-2" width="1em" height="1em" />,
+        dark: <MoonStarsFill className="me-2" width="1em" height="1em" />,
+        auto: <CircleHalf className="me-2" width="1em" height="1em" />,
     };
 
     return (
@@ -50,7 +46,7 @@ export default function ColorMode() {
                     >
                         {iconMap[value]}
                         {value.charAt(0).toUpperCase() + value.slice(1)}
-                        <CheckIcon
+                        <Check2
                             className={`bi ms-auto ${
                                 theme === value ? "" : "d-none"
                             }`}
